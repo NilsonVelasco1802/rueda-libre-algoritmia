@@ -148,7 +148,9 @@ El algoritmo final es la lista de 17 pasos que hice arriba. Une todas las partes
 |                                    | Si el tipo de bicicleta es eléctrica, `valorHora = 25000`.                    |                                |
 |                                    | Calcular el valor total del alquiler: `valorTotal = valorHora * numeroHoras`. |                                |
 
-## CASOS DE PRUEBA
+**Nota:**: Los tres tipos de bicicletas no estaban en la peticion del TL, fueron recomendaciones mias.
+
+### CASOS DE PRUEBA
 
 1. Alquiler por 1 hora
 
@@ -168,7 +170,7 @@ El algoritmo final es la lista de 17 pasos que hice arriba. Une todas las partes
 - Operación: 10.000 × 8.
 - Resultado: $80.000.
 
-## OTROS POSIBLES CASOS
+### OTROS POSIBLES CASOS
 
 1. Numeros negativos o un variable en 0.
 
@@ -178,34 +180,80 @@ El algoritmo final es la lista de 17 pasos que hice arriba. Une todas las partes
 
 ## 03_cotizacion_basica
 
-## DATOS DE ENTARA
+# Prueba de escritorio
 
-- nombreRentador = String
-- documentoRentador = entero
-- numeroPersonas = entero
-- tipoBicicleta = String
-- numeroHoras = entero
+**Caso de prueba:** Grupo de 4 personas en el recorrido Sabores de Barrio, con bicicleta urbana.
 
-## PROCESOS
+### Datos de entrada
 
-- valorHora depende del tipoBicicleta(urbana= 10.000, montaña = 15.000, electrica = 25.000)
-- valorTotal es igual a valorHora\*numeroHoras
-- valorPagarPersona es igual a valorPagar\*numeroPersonas
-- El programa devuelve factura que igual a [nombreRentador, documentoRentador, numeroPersonas, tipoBicicleta, valorHora, valorTotal, valorPagarPersona]
+- `opcionRecorrido = 2`
+- `opcionBicicleta = 1`
+- `cantidadPersonas = 4`
 
-## DATOS DE SALIDA
+### Tabla de seguimiento de variables
 
-- Factuara = [nombreRentador= String, documentoRentador = entero, numeroPersonas = entero, tipoBicicleta = String, valorHora = entero, valorTotal = entero, valorPagarPersona =]
+| Paso | Instrucción o acción             | `opcionRecorrido` | `nombreRecorrido` | `precioPersona` | `opcionBicicleta` | `tipoBicicleta` | `cantidadPersonas` | `valorTotal` | `anticipo` | `saldoPendiente` |
+| ---- | -------------------------------- | ----------------- | ----------------- | --------------- | ----------------- | --------------- | ------------------ | ------------ | ---------- | ---------------- |
+| 1    | Inicializar variables            | —                 | —                 | —               | —                 | —               | —                  | 0            | 0          | 0                |
+| 2    | Seleccionar recorrido: 2         | 2                 | —                 | —               | —                 | —               | —                  | 0            | 0          | 0                |
+| 3    | Asignar nombre y precio          | 2                 | Sabores de Barrio | 60000           | —                 | —               | —                  | 0            | 0          | 0                |
+| 4    | Seleccionar bicicleta: 1         | 2                 | Sabores de Barrio | 60000           | 1                 | —               | —                  | 0            | 0          | 0                |
+| 5    | Asignar tipo de bicicleta        | 2                 | Sabores de Barrio | 60000           | 1                 | Urbana          | —                  | 0            | 0          | 0                |
+| 6    | Ingresar cantidad de personas: 4 | 2                 | Sabores de Barrio | 60000           | 1                 | Urbana          | 4                  | 0            | 0          | 0                |
+| 7    | Calcular `valorTotal`            | 2                 | Sabores de Barrio | 60000           | 1                 | Urbana          | 4                  | 240000       | 0          | 0                |
+| 8    | Calcular `anticipo`              | 2                 | Sabores de Barrio | 60000           | 1                 | Urbana          | 4                  | 240000       | 72000      | 0                |
+| 9    | Calcular `saldoPendiente`        | 2                 | Sabores de Barrio | 60000           | 1                 | Urbana          | 4                  | 240000       | 72000      | 168000           |
 
-## TABLA
+**Nota:** El símbolo `—` indica que la variable todavía no tiene un valor asignado.
 
-| Entrada (datos que se leen y tipo) | Proceso (cálculos que se realizan)                                      | Salida (datos que se muestran) |
-| ---------------------------------- | ----------------------------------------------------------------------- | ------------------------------ |
-| `nombreRentador`: String           | Determinar el valor por hora según el tipo de bicicleta.                | `nombreRentador`: String       |
-| `documentoRentador`: Entero        | Si la bicicleta es urbana, `valorHora = 10000`.                         | `documentoRentador`: Entero    |
-| `numeroPersonas`: Entero           | Si la bicicleta es de montaña, `valorHora = 15000`.                     | `documentoRentador`: Entero    |
-| `tipoBicicleta`: String            | Si la bicicleta es eléctrica, `valorHora = 25000`.                      | `tipoBicicleta`: String        |
-| `numeroHoras`: Entero              | `valorTotal = valorHora * numeroHoras`.                                 | `numeroHoras`: Entero          |
-|                                    | `valorPagarPersona = valorTotal * numeroPersonas`.                      | `valorHora`: Entero            |
-|                                    | Generar la factura con los datos del rentador y los valores calculados. | `valorTotal`: Entero           |
-|                                    |                                                                         | `valorPagarPersona`: Entero    |
+### Cálculos realizados a mano
+
+1. **Valor total:**
+
+   `valorTotal = precioPersona * cantidadPersonas`
+
+   `valorTotal = 60000 * 4 = 240000`
+
+2. **Anticipo del 30 %:**
+
+   `anticipo = Redon(valorTotal * 0.30)`
+
+   `anticipo = Redon(240000 * 0.30) = 72000`
+
+3. **Saldo pendiente:**
+
+   `saldoPendiente = valorTotal - anticipo`
+
+   `saldoPendiente = 240000 - 72000 = 168000`
+
+---
+
+## Ejecución y comprobación
+
+### Datos ingresados en PSeInt
+
+| Dato solicitado      | Valor ingresado       |
+| -------------------- | --------------------- |
+| Recorrido            | 2 - Sabores de Barrio |
+| Tipo de bicicleta    | 1 - Urbana            |
+| Cantidad de personas | 4                     |
+
+### Resultado esperado en pantalla
+
+```text
+========= COTIZACION DEL RECORRIDO =========
+Nombre del recorrido: Sabores de Barrio
+Tipo de bicicleta: Urbana
+Precio por persona: $60000
+Cantidad de personas: 4
+Valor total: $240000
+Anticipo del 30%: $72000
+Saldo pendiente: $168000
+============================================
+```
+
+### Conclusión
+
+Al realizar la prueba de escritorio para un grupo de 4 personas en el recorrido Sabores de Barrio, se calculó un valor total de $240.000, un anticipo de $72.000 y un saldo pendiente de $168.000.
+
+Estos resultados corresponden a los cálculos realizados manualmente. Al ejecutar el algoritmo en PSeInt con los mismos datos, se debe comprobar que los valores obtenidos coincidan con los resultados esperados.
